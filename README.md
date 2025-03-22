@@ -37,7 +37,7 @@ This project demonstrates the deployment of a 3-tier application using **Docker*
      ```
 
 ### 5. **Create docker-compose.yml**
-   - Created a **docker-compose.yml** file to define and run multi-container Docker applications. Here’s an example:
+   - Created a **docker-compose.yml** file to define and run multi-container Docker applications. below given an example:
      ```yaml
      version: '3'
      services:
