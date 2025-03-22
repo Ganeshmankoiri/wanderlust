@@ -4,7 +4,7 @@ This project demonstrates the deployment of a 3-tier application using **Docker*
 
 ---
 
-## **Steps Followed**
+## **Steps Followed to do project.**
 
 ### 1. **Fork the Repository**
    - Forked the [krishnaacharyaa/wanderlust](https://github.com/krishnaacharyaa/wanderlust) repository to my GitHub account to work on the codebase.
