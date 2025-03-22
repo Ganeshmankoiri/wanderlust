@@ -1,4 +1,4 @@
-# **Project: Deployment of a 3-Tier Application on AWS EC2**
+# **Project: Deployment of a 3-Tier Application on AWS EC2.**
 
 This project demonstrates the deployment of a 3-tier application using **Docker**, **Docker Compose**, and **AWS EC2**. The application was forked from the open-source repository **[krishnaacharyaa/wanderlust](https://github.com/krishnaacharyaa/wanderlust)** and successfully deployed live.
 
