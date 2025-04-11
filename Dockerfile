@@ -1,19 +1,16 @@
-# Use Node.js as the base image
 FROM node:18
 
-# Set app directory
+# Accept APP_DIR from docker-compose
+ARG APP_DIR
+
 WORKDIR /app
 
-# Copy package files and install
-COPY package*.json ./
+# Copy only the app folder (frontend or backend)
+COPY ${APP_DIR}/package*.json ./
+
 RUN npm install
 
-# Copy the rest of the code
-COPY . .
+COPY ${APP_DIR} .
 
-# Build React (optional for frontend)
-# RUN npm run build
-
-# Expose port and start app
 EXPOSE 3000
 CMD [ "npm", "start" ]
