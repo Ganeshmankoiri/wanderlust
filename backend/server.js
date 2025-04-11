@@ -4,7 +4,7 @@ import { PORT } from './config/utils.js';
 import { connectToRedis } from './services/redis.js';
 
 const server = () => {
-  const port = PORT || 8081;
+  const port = PORT || 8000;
 
   // Redis connections
   connectToRedis();
