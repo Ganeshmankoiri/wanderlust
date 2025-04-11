@@ -1,0 +1,13 @@
+# Dockerfile.backend
+FROM node:18
+
+WORKDIR /app
+
+COPY backend/package*.json ./
+RUN npm install --legacy-peer-deps
+
+COPY backend/ .
+
+EXPOSE 5000
+
+CMD ["node", "server.js"]
