@@ -1,17 +1,20 @@
-version: '3'
+version: "3.8"
+
 services:
   frontend:
-    build: ./frontend
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        APP_DIR: frontend
     ports:
       - "3000:3000"
+
   backend:
-    build: ./backend
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        APP_DIR: backend
     ports:
       - "5000:5000"
-  database:
-    image: mysql:5.7
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: wanderlust
-    ports:
-      - "3306:3306"
