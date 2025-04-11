@@ -1,0 +1,44 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Clone from GitHub') {
+            steps {
+                git url: 'https://github.com/Ganeshmankoiri/wanderlust.git', branch: 'devops'
+            }
+        }
+        
+        stage('SonarQube Scan') {
+            steps {
+                withSonarQubeEnv('Sonar') {
+                    sh "${tool 'Sonar'}/bin/sonar-scanner"
+                }
+            }
+        }
+
+        stage('OWASP Dependency Check') {
+            steps {
+                dependencyCheck additionalArguments: '--scan ./', odcInstallation: 'owasp'
+                dependencyCheckPublisher pattern : '**/dependency-check-report.xml'
+            }
+        }
+
+        stage('Sonar Quality Gate Scan') {
+            steps {
+                timeout(time: 2, unit: 'MINUTES'){
+                  waitForQualityGate abortPipeline: false  
+                }
+            }
+        }
+        stage('Trivy File System Scan '){
+            steps{
+                sh 'trivy fs --format table -o trivy-fs-report.html .'
+            }
+        }
+        stage('Deploy Using Docker Compose'){
+            steps{
+                sh "docker-compose up -d"
+            }
+        }
+    }
+}
