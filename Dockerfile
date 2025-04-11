@@ -6,7 +6,7 @@ WORKDIR /app
 ARG APP_DIR
 COPY ${APP_DIR}/package*.json ./
 
-RUN npm install --legacy-peer-deps
+RUN npm install --legacy-peer-deps && npm install -g vite
 
 COPY ${APP_DIR}/ .
 
