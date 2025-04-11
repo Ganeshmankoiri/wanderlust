@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.9"
 
 services:
   frontend:
@@ -7,12 +7,15 @@ services:
       dockerfile: Dockerfile
       args:
         APP_DIR: frontend
-    container_name: wanderlust-frontend
     ports:
       - "3000:3000"
-    volumes:
-      - ./frontend:/app
-    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    depends_on:
+      - backend
+    command: ["npm", "run", "dev"]
+    # Or if using vite preview with global install:
+    # command: ["npm", "start"]
 
   backend:
     build:
@@ -20,10 +23,8 @@ services:
       dockerfile: Dockerfile
       args:
         APP_DIR: backend
-    container_name: wanderlust-backend
     ports:
-      - "5000:5000"
-    volumes:
-      - ./backend:/app
-    restart: unless-stopped
-    command: ["npm", "start"]
+      - "8080:8080"
+    environment:
+      - NODE_ENV=production
+    command: ["npm", "run", "start"]
